@@ -1,3 +1,5 @@
+//Here is a comment to test if Hans got the repo cloned properly with java in vscode
+
 package com.komodo.model;
 
 public class User {
@@ -55,3 +57,4 @@ public class User {
 	
 	
 }
+
