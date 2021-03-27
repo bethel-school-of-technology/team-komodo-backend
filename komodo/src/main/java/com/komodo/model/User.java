@@ -1,5 +1,5 @@
 //Here is a comment to test if Hans got the repo cloned properly with java in vscode
-
+//Testing wing's origin
 package com.komodo.model;
 
 public class User {
