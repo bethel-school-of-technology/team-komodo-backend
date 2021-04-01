@@ -1,7 +1,7 @@
-package com.komodo.auth;
+// package com.komodo.auth;
 
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+// import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+// public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     
-}
+// }
