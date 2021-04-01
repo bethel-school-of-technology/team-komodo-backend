@@ -1,10 +1,19 @@
 //Here is a comment to test if Hans got the repo cloned properly with java in vscode
 //Testing wing's origin
+
+//What Hans added to this came from Exeter Java Front-End Integration Lesson 3
 package com.komodo.model;
 
+import javax.persistence.*;
+import java.lang.invoke.InjectedProfile;
+
+@Entity
 public class User {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+	@Column(nullable = false, unique = true)
 	private String username;
 	
 	private String email;
