@@ -1,5 +1,6 @@
 package com.komodo.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.komodo.model.Appointment;
