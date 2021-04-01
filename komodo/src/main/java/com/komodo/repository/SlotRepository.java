@@ -1,10 +1,10 @@
-package com.komodo.repository;
+// package com.komodo.repository;
 
-import com.komodo.model.Slot;
+// import com.komodo.model.Slot;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SlotRepository extends JpaRepository<Slot,Integer> {
-    Slot findById(Long id);
+// public interface SlotRepository extends JpaRepository<Slot,Integer> {
+//     Slot findById(Long id);
     
-}
+// }

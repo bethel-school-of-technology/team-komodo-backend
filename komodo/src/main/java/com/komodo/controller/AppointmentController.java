@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class AppointmentController {
-    @Autowired
+    // @Autowired
 	private AppointmentRepository appointmentRepository;
 	
     public AppointmentController(AppointmentRepository appointmentRepository) {
@@ -48,12 +48,12 @@ public class AppointmentController {
 				.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 	@PostMapping("/appointment")
-	ResponseEntity<Appointment> createAppointment(@Valid @RequestBody Appointment appointment) throws URISyntaxException{
+	ResponseEntity<?> createAppointment(@Valid @RequestBody Appointment appointment) throws URISyntaxException{
 		System.out.print("Im Posting !!!!!!!!!!!");
 		// appointment.setCreatedDate();
 		Appointment result = appointmentRepository.save(appointment);
 		
-		return ResponseEntity.created(new URI("/api/appointment" + result.getId())).body(result);
+		return ResponseEntity.created(new URI("/api/appointment" + result.getId())).body(result.getId());
 	}
 	@PutMapping("/appointment/{id}")
 	ResponseEntity<?> updateAppointment(@Valid @RequestBody Appointment appointment,@PathVariable(value="id") Long id){
