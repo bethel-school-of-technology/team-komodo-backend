@@ -4,8 +4,13 @@
 //What Hans added to this came from Exeter Java Front-End Integration Lesson 3
 package com.komodo.model;
 
-import javax.persistence.*;
-import java.lang.invoke.InjectedProfile;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+// import java.lang.invoke.InjectedProfile;
 
 @Entity
 public class User {
