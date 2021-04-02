@@ -30,9 +30,9 @@ public class Slot {
    //[1,2,3,4,5,6,0]
    private Date day;
    //One toOne to appointment class
-   private Integer slot_1;//appointment id
-   private Integer slot_2;
-   private Integer slot_3;
+   private Long slot_1;//appointment id, check if the slot is occupided
+   private Long slot_2;
+   private Long slot_3;
    
    //....
     public Long getId() {
@@ -51,27 +51,27 @@ public class Slot {
         this.day = day;
     }
 
-    public Integer getSlot_1() {
+    public Long getSlot_1() {
         return slot_1;
     }
 
-    public void setSlot_1(Integer slot_1) {
+    public void setSlot_1(Long slot_1) {
         this.slot_1 = slot_1;
     }
 
-    public Integer getSlot_2() {
+    public Long getSlot_2() {
         return slot_2;
     }
 
-    public void setSlot_2(Integer slot_2) {
+    public void setSlot_2(Long slot_2) {
         this.slot_2 = slot_2;
     }
 
-    public Integer getSlot_3() {
+    public Long getSlot_3() {
         return slot_3;
     }
 
-    public void setSlot_3(Integer slot_3) {
+    public void setSlot_3(Long slot_3) {
         this.slot_3 = slot_3;
     }
 
