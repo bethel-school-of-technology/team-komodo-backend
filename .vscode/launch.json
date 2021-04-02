@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-KomodoApplication<komodo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.komodo.KomodoApplication",
+            "projectName": "komodo",
+            "args": ""
+        }
+    ]
+}
