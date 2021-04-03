@@ -20,7 +20,7 @@ import lombok.NonNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name="appointment")
+@Table(name="slot")
 public class Slot {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

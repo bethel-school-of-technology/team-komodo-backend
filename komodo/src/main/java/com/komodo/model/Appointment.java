@@ -2,14 +2,23 @@ package com.komodo.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,9 +46,16 @@ public class Appointment {
     
     @NonNull
     private Long age;
-        
+    
+
     @NonNull
     private String description;
+
+    @JsonIgnore
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -89,6 +105,28 @@ public class Appointment {
         this.description = description;
     }
 
-    // @OneToOne
-    // private Slot slot;
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    // public void setUser(User user) {
+    //     if (sameAsFormer(user))
+    //         return ;
+    //     //set new owner
+    //     User oldUser = this.user;
+    //     this.user = user;
+    //     //remove from the old owner
+    //     if (oldUser!=null)
+    //         oldUser.removeAppointment(this);
+    //     //set myself into new owner
+    //     if (user!=null)
+    //         user.addAppointment(this);
+    // }
+    // private boolean sameAsFormer(User newUser) {
+    //     return user==null? newUser == null : user.equals(newUser);
+    //   }
+   
 }
