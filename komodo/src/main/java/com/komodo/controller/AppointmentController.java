@@ -1,8 +1,6 @@
 package com.komodo.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.security.Principal;
-import java.util.Collection;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,11 +33,11 @@ public class AppointmentController {
 	@Autowired
 	private UserRepository userRepository;
 
-    public AppointmentController(AppointmentRepository appointmentRepository, UserRepository userRepository) {
-		super();
-		this.appointmentRepository = appointmentRepository;
-		this.userRepository = userRepository;
-	}
+    // public AppointmentController(AppointmentRepository appointmentRepository, UserRepository userRepository) {
+	// 	super();
+	// 	this.appointmentRepository = appointmentRepository;
+	// 	this.userRepository = userRepository;
+	// }
 	
 	@GetMapping("/{userId}/appointments")
 	Page<Appointment> getAllAppointmentsByUserId(@PathVariable(value = "userId") Long userId, Pageable pageable){
