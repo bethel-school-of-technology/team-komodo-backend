@@ -47,6 +47,8 @@ public class Appointment {
     @NonNull
     private Long age;
     
+    @NonNull
+    private Long slot;
 
     @NonNull
     private String description;
@@ -110,6 +112,14 @@ public class Appointment {
     }
     public void setUser(User user){
         this.user = user;
+    }
+
+    public Long getSlot() {
+        return slot;
+    }
+
+    public void setSlot(Long slot) {
+        this.slot = slot;
     }
 
     // public void setUser(User user) {

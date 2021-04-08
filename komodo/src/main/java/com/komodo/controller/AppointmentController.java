@@ -1,12 +1,15 @@
 package com.komodo.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Date;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import com.komodo.model.Appointment;
+import com.komodo.model.Slot;
 import com.komodo.repository.AppointmentRepository;
+import com.komodo.repository.SlotRepository;
 import com.komodo.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AppointmentController {
     @Autowired
 	private AppointmentRepository appointmentRepository;
+
+	@Autowired
+	private SlotRepository slotRepository;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -63,7 +69,30 @@ public class AppointmentController {
 			appointment.setUser(user);
 			return appointmentRepository.save(appointment);
 		});
+		Date date = appointment.getDate();
+		System.out.println(date);
+		System.out.println(slotRepository.findByDay(date));
+		Slot slot = new Slot();
 		
+		if (slotRepository.findByDay(date) == null){
+			slot.setDay(date);
+			if(appointment.getSlot() == 1) slot.setSlot_1(appointment.getId());
+			else if(appointment.getSlot() == 2) slot.setSlot_2(appointment.getId());
+			else if(appointment.getSlot() == 3) slot.setSlot_3(appointment.getId());
+			slotRepository.save(slot);
+		}else{
+			slot = slotRepository.findByDay(date);
+			if(appointment.getSlot() == 1 && slot.getSlot_1() == null){
+				slot.setSlot_1(appointment.getId());
+			}else if(appointment.getSlot() == 2 && slot.getSlot_2() == null){
+				slot.setSlot_2(appointment.getId());
+			}else if(appointment.getSlot() == 3 && slot.getSlot_3() == null){
+				slot.setSlot_3(appointment.getId());
+			}else{
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("Message","Slot is occupied").body("Occupied lol");
+			}
+			slotRepository.save(slot);
+		}
 		return ResponseEntity.created(new URI("/api/appointment" + appointment.getId())).body(appointment.getId());
 	}
 	// @PutMapping("/{userId}/appointment/{appointmentId}")
