@@ -28,6 +28,7 @@ public class Slot {
     
 // private List<Integer> slots = new ArrayList<Integer>();
    //[1,2,3,4,5,6,0]
+//   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd",timezone=JsonFormat.DEFAULT_TIMEZONE)
    private Date day;
    //One toOne to appointment class
    private Long slot_1;//appointment id, check if the slot is occupided

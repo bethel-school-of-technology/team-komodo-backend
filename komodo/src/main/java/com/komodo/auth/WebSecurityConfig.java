@@ -1,6 +1,9 @@
 package com.komodo.auth;
 
 import java.util.Arrays;
+
+import com.komodo.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -17,6 +20,8 @@ import static com.komodo.auth.AuthConstants.*;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Autowired
   private MySQLUserDetailsService mySQLUserDetailsService;
+  @Autowired
+  private UserRepository userRepository;
 
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -36,7 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizeRequests().antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
       .anyRequest().authenticated()
       .and()
-      .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+      // .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+      .addFilter(new JWTAuthenticationFilter(authenticationManager(), userRepository))
       .addFilter(new JWTAuthorizationFilter(authenticationManager()))
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
@@ -45,8 +51,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   CorsConfigurationSource corsConfigurationSource() {
     final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     CorsConfiguration corsConfig = new CorsConfiguration();
+    corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+    corsConfig.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT"));
     corsConfig.applyPermitDefaultValues();
-    corsConfig.setExposedHeaders(Arrays.asList("Authorization","UserName"));
+    corsConfig.setExposedHeaders(Arrays.asList("Authorization","UserId"));
     source.registerCorsConfiguration("/**", corsConfig);
     return source;
   }

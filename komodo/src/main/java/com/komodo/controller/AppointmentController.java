@@ -13,8 +13,12 @@ import com.komodo.repository.SlotRepository;
 import com.komodo.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,7 +51,9 @@ public class AppointmentController {
 	
 	@GetMapping("/{userId}/appointments")
 	Page<Appointment> getAllAppointmentsByUserId(@PathVariable(value = "userId") Long userId, Pageable pageable){
-		
+		pageable = PageRequest.of(0, 5, Sort.by(
+			    Order.desc("date")
+			    ));
 		return appointmentRepository.findByUserId(userId,pageable);
 		
 		 
