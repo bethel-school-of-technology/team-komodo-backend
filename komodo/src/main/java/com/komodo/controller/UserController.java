@@ -1,7 +1,8 @@
 //Hans added this from Front-End Integration Lesson 8
 
-package com.komodo.auth;
+package com.komodo.controller;
 
+import com.komodo.auth.MySQLUserDetailsService;
 import com.komodo.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
